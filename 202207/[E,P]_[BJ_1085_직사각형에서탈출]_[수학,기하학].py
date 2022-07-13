@@ -7,3 +7,4 @@
 x,y,w,h = map(int, input().split())
 dist = min(x,y,h-y,w-x)
 print(dist)
+print('hi')
