@@ -1,19 +1,25 @@
-import sys
-n = int(sys.stdin.readline())
+# BJ 1268 임시 반장 정하기 <구현>
+# https://www.acmicpc.net/problem/1268
+# 시간 : 1384 ms
+# 문제 리뷰 : H , R
+# 회고 : 
 
-cnt = [[0]*5]*n
-std = [[*map(int, sys.stdin.readline().split())] for _ in range(n)]
+N = int(input())
+std = []
 
-print(cnt)
-print(std)
+for i in range(N):
+    std.append([int(j) for j in input().split()])
+    
+mx_frd = -1
+bj = -1
 
-for col in range(5):
-    for i in range(n):
-        for j in range(i+1,n, 1):
-            if std[i][col] == std[j][col]:
-                cnt[i][col] = 1
-                cnt[j][col] = 1
-
-for i in range(n):
-    cnt[i] = sum(cnt[i])
-print(cnt.index(max(cnt))+1)
+for std_no in range(N):
+    result = set()
+    for grd in range(5):
+        for frd in range(N):
+            if std[std_no][grd] == std[frd][grd]:
+                result.add(frd)
+        if len(result) > mx_frd:
+            bj = std_no + 1
+            mx_frd = len(result)
+print(bj)
